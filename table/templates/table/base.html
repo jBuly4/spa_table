@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+<div class="content">
+	<h1>Intro Welbex task</h1>
+
+	<div class="table">
+		<table>
+			<thead>
+				<tr>
+					<th>Date</th>
+					<th>Name</th>
+					<th>Amount</th>
+					<th>Distance</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				{% for row in table %}
+					<tr>
+						<td>{{ row.date }}</td>
+						<td>{{ row.name }}</td>
+						<td>{{ row.amount }}</td>
+						<td>{{ row.distance }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	<div class="pages">
+		<input type="button" onclick="this" min="1" max="10">
+	</div>
+	</div>
+</div>
+
+<h1>Filter</h1>
+	<form action="" method="get">
+		{{ filter.as_p }}
+		{% csrf_token %}
+		<p><input type="submit" value="Send"></p>
+	</form>
+
+<h1>Sort</h1>
+	<form action="" method="get">
+		{{ sort.as_p }}
+		{% csrf_token %}
+		<p><input type="submit" value="Send"></p>
+	</form>
+
+
+
+
+</body>
+</html>
