@@ -43,7 +43,7 @@ def filter_processing(table: django.db.models.QuerySet, filterform: ToFilter) ->
                     case 'contain':
                         table = table.filter(amount__icontains=choices)
                     case 'equal':
-                        table = table.filter(amount__equal=choices)
+                        table = table.filter(amount__exact=choices)
             case 'distance':
                 match conditions:
                     case 'lt':
@@ -53,10 +53,10 @@ def filter_processing(table: django.db.models.QuerySet, filterform: ToFilter) ->
                     case 'contain':
                         table = table.filter(distance__icontains=choices)
                     case 'equal':
-                        table = table.filter(distance__equal=choices)
+                        table = table.filter(distance__exact=choices)
             case 'name':
                 if conditions == 'equal' or conditions == 'contain':
-                    table = table.filter(Q(name__icontains=choices) | Q(name__equals=choices))
+                    table = table.filter(Q(name__icontains=choices) | Q(name__exact=choices))
 
     return table
 

@@ -18,12 +18,18 @@ def index_view(client):
     )
 
     page_num = client.GET.get('page_num', 1)
-    pages = Paginator(processing_results, 2).get_page(page_num)
+    # pages = Paginator(processing_results, 2).get_page(page_num)
+    # first_page = pages.page
+    # page_range = pages.page_range
+    pages = Paginator(processing_results, 10)
+    first_page = pages.page(1).object_list
+    page_range = pages.page_range
 
     context = {
         'filter': to_filter,
         'sort': to_sort,
-        'table': pages,
+        'table': pages.get_page(page_num),
+        'page_range': page_range,
     }
 
     return render(client, 'table/base.html', context=context)

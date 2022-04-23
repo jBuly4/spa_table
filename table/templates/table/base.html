@@ -3,11 +3,10 @@
 <head>
 	<meta charset="UTF-8">
 	<title>SPA</title>
-	  <script
-		  src="https://code.jquery.com/jquery-3.4.1.min.js"
-		  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-		  crossorigin="anonymous"></script>
-    </head>
+{#	  <script#}
+{#		  src="https://code.jquery.com/jquery-3.4.1.min.js"#}
+{#		  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="#}
+{#		  crossorigin="anonymous"></script>#}
 </head>
 <body>
 
@@ -58,36 +57,38 @@
 
 {# pagination #}
 
-<!-- loop pagination -->
-{% for i in page_range %}
-	<a style="margin-left: 5px; font-size: 20px;" href="{{i}}">{{i}}</a>
-{% endfor %}
-
-<script>
-$('a').click(function(event){
-    event.preventDefault();
-    var page_n = $(this).attr('href');
-    // ajax
-        $.ajax({
-                type: "GET",
-                url: "{% url '' %}", // name of url
-                data : {
-                page_n : page_n, //page_number
-                csrfmiddlewaretoken: '{{ csrf_token }}',
-            },
-            success: function (resp) {
-                //loop
-                $('#table').html('')
-               $.each(resp.results, function(i, val) {
-                 //apending posts
-                $('#table').append('<h2>' + val.title + '</h2>')
-               });
-            },
-            error: function () {}
-        }); //
-
-});
-</script>
+{#<!-- loop pagination -->#}
+{#{% for i in page_range %}#}
+{#	<a style="margin-left: 5px; font-size: 20px;" href="{{i}}">{{i}}</a>#}
+{#{% endfor %}#}
+{##}
+{#<script>#}
+{#$('a').click(function(event){#}
+{#    event.preventDefault();#}
+{#    var page_n = $(this).attr('href');#}
+{#    // ajax#}
+{#        $.ajax({#}
+{#                type: "GET",#}
+{#                url: "{% url '' %}", // name of url#}
+{#                data : {#}
+{#                'page_num' : page_num, //page_number#}
+{#	                'sort': to_sort.value,#}
+{#	                ''#}
+{#                csrfmiddlewaretoken: '{{ csrf_token }}',#}
+{#            },#}
+{#            success: function (resp) {#}
+{#                //loop#}
+{#                $('#table').html('')#}
+{#               $.each(resp.results, function(i, val) {#}
+{#                 //apending posts#}
+{#                $('#table').append('<h2>' + val.title + '</h2>')#}
+{#               });#}
+{#            },#}
+{#            error: function () {}#}
+{#        }); //#}
+{##}
+{#});#}
+{#</script>#}
 
 
 </body>
