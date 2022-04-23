@@ -8,6 +8,7 @@ from .sortform import ToSort
 
 # Create your views here.
 
+
 def index_view(client):
     to_filter = ToFilter(client.GET)
     to_sort = ToSort(client.GET)
@@ -18,18 +19,15 @@ def index_view(client):
     )
 
     page_num = client.GET.get('page_num', 1)
-    # pages = Paginator(processing_results, 2).get_page(page_num)
-    # first_page = pages.page
-    # page_range = pages.page_range
-    pages = Paginator(processing_results, 10)
-    first_page = pages.page(1).object_list
-    page_range = pages.page_range
+
+    pages = Paginator(processing_results, 1)
 
     context = {
         'filter': to_filter,
         'sort': to_sort,
+        # 'table': processing_results,
         'table': pages.get_page(page_num),
-        'page_range': page_range,
+        'page_num': page_num
     }
 
     return render(client, 'table/base.html', context=context)

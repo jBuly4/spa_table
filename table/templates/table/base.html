@@ -3,10 +3,10 @@
 <head>
 	<meta charset="UTF-8">
 	<title>SPA</title>
-{#	  <script#}
-{#		  src="https://code.jquery.com/jquery-3.4.1.min.js"#}
-{#		  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="#}
-{#		  crossorigin="anonymous"></script>#}
+	  <script
+		  src="https://code.jquery.com/jquery-3.4.1.min.js"
+		  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+		  crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -14,6 +14,7 @@
 	<h1>Intro Welbex task</h1>
 
 	<div class="table">
+
 		<table>
 			<thead>
 				<tr>
@@ -34,10 +35,26 @@
 					</tr>
 				{% endfor %}
 			</tbody>
+
 		</table>
-	<div class="pages">
-		<input type="button" onclick="this" min="1" max="10">
-	</div>
+{#		{% if table.has_next %}#}
+{#		<a href="?page={{ table.next_page_number }}"> next </a>#}
+{#		{% endif %}#}
+	<div class="pagination">
+    <span class="step-links">
+        {% if table.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ table.previous_page_number }}">previous</a>
+        {% endif %}
+
+        {% if table.has_next %}
+            <a href="?{{ table.next_page_number }}">next</a>
+
+            <a href="?page={{ table.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
 	</div>
 </div>
 
@@ -57,38 +74,8 @@
 
 {# pagination #}
 
-{#<!-- loop pagination -->#}
-{#{% for i in page_range %}#}
-{#	<a style="margin-left: 5px; font-size: 20px;" href="{{i}}">{{i}}</a>#}
-{#{% endfor %}#}
-{##}
-{#<script>#}
-{#$('a').click(function(event){#}
-{#    event.preventDefault();#}
-{#    var page_n = $(this).attr('href');#}
-{#    // ajax#}
-{#        $.ajax({#}
-{#                type: "GET",#}
-{#                url: "{% url '' %}", // name of url#}
-{#                data : {#}
-{#                'page_num' : page_num, //page_number#}
-{#	                'sort': to_sort.value,#}
-{#	                ''#}
-{#                csrfmiddlewaretoken: '{{ csrf_token }}',#}
-{#            },#}
-{#            success: function (resp) {#}
-{#                //loop#}
-{#                $('#table').html('')#}
-{#               $.each(resp.results, function(i, val) {#}
-{#                 //apending posts#}
-{#                $('#table').append('<h2>' + val.title + '</h2>')#}
-{#               });#}
-{#            },#}
-{#            error: function () {}#}
-{#        }); //#}
-{##}
-{#});#}
-{#</script>#}
+<!-- loop pagination -->
+
 
 
 </body>
